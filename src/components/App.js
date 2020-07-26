@@ -14,6 +14,9 @@ const App = () => {
   const darkTheme = createMuiTheme({
     palette: {
       type: "dark",
+      action: {
+        active: "#fff",
+      },
       primary: {
         light: "#ffeb3b",
         main: "#ffeb3b",
@@ -28,10 +31,11 @@ const App = () => {
       },
       background: {
         default: "#000000",
-        paper: "#141921",
+        paper: "#161c23",
       },
       text: {
         primary: "#fff",
+        secondary: "#fff",
       },
     },
   });
@@ -40,7 +44,7 @@ const App = () => {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <GlobalState>
-        <Grid container spacing={2}>
+        <Grid container spacing={4}>
           <Grid item xs={3} sm={3}>
             <SideMenu />
           </Grid>

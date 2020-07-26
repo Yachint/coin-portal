@@ -3,23 +3,42 @@ import { makeStyles, withStyles } from "@material-ui/core/styles";
 import {
   Table,
   TableBody,
-  TableCell,
   TableContainer,
   TableHead,
   TableRow,
+  Typography,
 } from "@material-ui/core";
-import btcLogo from "../../logo/bitcoin.png";
-import ethLogo from "../../logo/ethereum.png";
-import binLogo from "../../logo/binance.png";
+import MuiTableCell from "@material-ui/core/TableCell";
+import btcLogo from "../../logo/btcReal.png";
+import ethLogo from "../../logo/ethReal2.png";
+import binLogo from "../../logo/BinanceReal.png";
 // import rows from '../data/rows';
 import { Grid, Button, Paper } from "@material-ui/core";
 import CallMadeIcon from "@material-ui/icons/CallMade";
 import CallReceivedIcon from "@material-ui/icons/CallReceived";
 import { yellow, blue } from "@material-ui/core/colors";
 
+// const PaperTable = withStyles({
+//   root: {
+//     borderRadius: "16px",
+//   },
+// })(Paper);
+
+const TableCell = withStyles({
+  root: {
+    border: "5px",
+    borderColor: "#fff",
+    borderCollapse: "separate",
+    borderSpacing: "5px",
+    padding: "10px",
+  },
+})(MuiTableCell);
+
 const StyledTableRow = withStyles((theme) => ({
   root: {
     borderRadius: 10,
+    paddingTop: "10px",
+    paddingBottom: "10px",
   },
 }))(TableRow);
 
@@ -30,11 +49,24 @@ const useStyles = makeStyles({
   tableRow: {
     borderSpacing: "90px",
   },
+  tableSpace: {
+    backgroundColor: "#000",
+    height: "2px",
+  },
+  tableSpaceCell: {
+    height: "1px",
+  },
   sendColor: {
     color: yellow.A700,
   },
   receiveColor: {
     color: blue.A700,
+  },
+  tableItem: {
+    paddingLeft: "30px",
+  },
+  text: {
+    color: "#adabaa",
   },
 });
 
@@ -47,11 +79,11 @@ const useStyles = makeStyles({
 
 const logoProvider = (name) => {
   if (name === "BITCOIN") {
-    return <img src={btcLogo} alt="btc" width="40px" />;
+    return <img src={btcLogo} alt="btc" width="55px" />;
   } else if (name === "ETHEREUM") {
-    return <img src={ethLogo} alt="btc" width="40px" />;
+    return <img src={ethLogo} alt="btc" width="55px" />;
   } else {
-    return <img src={binLogo} alt="btc" width="40px" />;
+    return <img src={binLogo} alt="btc" width="55px" />;
   }
 };
 
@@ -65,52 +97,87 @@ export default function SimpleTable(props) {
       <Table className={classes.table}>
         <TableHead>
           <TableRow style={{ backgroundColor: "#000" }}>
-            <TableCell>Coin</TableCell>
-            <TableCell align="right">Holding</TableCell>
-            <TableCell align="right">Value</TableCell>
-            <TableCell align="right">Price</TableCell>
+            <TableCell>
+              <p style={{ color: "#474848" }}>Coin</p>
+            </TableCell>
+            <TableCell align="right">
+              <p style={{ color: "#474848" }}>Holding</p>
+            </TableCell>
+            <TableCell align="right">
+              <p style={{ color: "#474848" }}>Value</p>
+            </TableCell>
+            <TableCell align="right">
+              <p style={{ color: "#474848" }}>Price</p>
+            </TableCell>
             <TableCell align="right" style={{ paddingRight: "80px" }}>
-              Actions
+              <p style={{ color: "#474848" }}>Actions</p>
             </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <StyledTableRow key={row.id} className={classes.tableRow}>
-              <TableCell component="th" scope="srow">
-                <Grid container spacing={0}>
-                  <Grid item xs={3} sm={3}>
-                    {logoProvider(row.coin)}
+            <React.Fragment key={row.id}>
+              <StyledTableRow key={row.id} className={classes.tableRow}>
+                <TableCell
+                  component="th"
+                  scope="srow"
+                  className={classes.tableItem}
+                >
+                  <Grid container spacing={0}>
+                    <Grid item xs={3} sm={3}>
+                      {logoProvider(row.coin)}
+                    </Grid>
+                    <Grid item xs={9} sm={9}>
+                      <div style={{ paddingTop: "15px", paddingRight: "20px" }}>
+                        <Typography className={classes.text}>
+                          {row.coin}
+                        </Typography>
+                      </div>
+                    </Grid>
                   </Grid>
-                  <Grid item xs={9} sm={9}>
-                    <div style={{ paddingTop: "8px", paddingRight: "20px" }}>
-                      {row.coin}
-                    </div>
-                  </Grid>
-                </Grid>
-              </TableCell>
-              <TableCell align="right">{row.holding}</TableCell>
-              <TableCell align="right">{row.value}</TableCell>
-              <TableCell align="right">{row.price}</TableCell>
-              <TableCell align="right">
-                <div>
-                  <Button
-                    className={classes.receiveColor}
-                    startIcon={<CallReceivedIcon />}
-                    onClick={() => props.handleOpen()}
-                  >
-                    Receive
-                  </Button>{" "}
-                  |
-                  <Button
-                    className={classes.sendColor}
-                    startIcon={<CallMadeIcon />}
-                  >
-                    Send
-                  </Button>
-                </div>
-              </TableCell>
-            </StyledTableRow>
+                </TableCell>
+                <TableCell align="right">
+                  <Typography className={classes.text}>
+                    {row.holding}
+                  </Typography>
+                </TableCell>
+                <TableCell align="right">
+                  <Typography className={classes.text}>{row.value}</Typography>
+                </TableCell>
+                <TableCell align="right">
+                  <Typography className={classes.text}>{row.price}</Typography>
+                </TableCell>
+                <TableCell align="right">
+                  <div>
+                    <Button
+                      className={classes.receiveColor}
+                      startIcon={<CallReceivedIcon />}
+                      onClick={() => props.handleOpen()}
+                    >
+                      Receive
+                    </Button>{" "}
+                    |
+                    <Button
+                      className={classes.sendColor}
+                      startIcon={<CallMadeIcon />}
+                    >
+                      Send
+                    </Button>
+                  </div>
+                </TableCell>
+              </StyledTableRow>
+              <StyledTableRow key={row.id * 2} className={classes.tableSpace}>
+                <TableCell
+                  component="th"
+                  scope="srow"
+                  className={classes.tableSpaceCell}
+                ></TableCell>
+                <TableCell align="right"></TableCell>
+                <TableCell align="right"></TableCell>
+                <TableCell align="right"></TableCell>
+                <TableCell align="right"></TableCell>
+              </StyledTableRow>
+            </React.Fragment>
           ))}
         </TableBody>
       </Table>

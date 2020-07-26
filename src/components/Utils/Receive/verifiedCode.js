@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     color: theme.palette.text.secondary,
     width: "85vh",
-    borderStyle: "dotted",
   },
   text: {
     padding: "10px",
@@ -28,9 +27,14 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "10px",
     paddingRight: "10px",
   },
+  title: {
+    paddingBottom: "20px",
+    paddingLeft: "30px",
+    color: "#adabaa",
+  },
 }));
 
-export default function PreVerifiedCode(props) {
+export default function VerifiedCode(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const { coinAddress } = props;
@@ -57,7 +61,8 @@ export default function PreVerifiedCode(props) {
   return (
     <div className={classes.root}>
       <Grid container spacing={3} className={classes.grid}>
-        <Paper className={classes.paper}>
+        <Typography className={classes.title}>Coin Address</Typography>
+        <Paper className={classes.paper} style={{ backgroundColor: "#24272b" }}>
           <div>
             <Typography variant="h4" className={classes.text}>
               {" "}
@@ -68,13 +73,19 @@ export default function PreVerifiedCode(props) {
             <Button
               variant="contained"
               color="secondary"
-              style={{ height: "80%", top: "10%" }}
+              style={{
+                height: "80%",
+                top: "10%",
+                backgroundColor: "#333538",
+                textTransform: "none",
+                borderRadius: 10,
+              }}
               onClick={() => {
                 navigator.clipboard.writeText(coinAddress);
                 handleClick();
               }}
             >
-              Copy
+              <p style={{ color: "#e2c19d", borderRadius: "50" }}>Copy</p>
             </Button>
           </div>
         </Paper>

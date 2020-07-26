@@ -1,11 +1,18 @@
 import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Paper, Button, Divider } from "@material-ui/core";
-import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
-import PaymentIcon from "@material-ui/icons/Payment";
-import OndemandVideoIcon from "@material-ui/icons/OndemandVideo";
-import SettingsIcon from "@material-ui/icons/Settings";
+import {
+  Grid,
+  Paper,
+  Button,
+  Divider,
+  Typography,
+  ButtonBase,
+} from "@material-ui/core";
+import TxIco from "../logo/tx.png";
+import TutorialsIco from "../logo/Tutorials.png";
+import SettingsIco from "../logo/Settings.png";
 import WalletList from "./Helpers/WalletList";
+import PortFolioIco from "../logo/portfolio.png";
 import ListButtons from "./Helpers/ListButtons";
 import AppContext from "../context/appContext";
 
@@ -47,12 +54,14 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    borderBottomRightRadius: "25px",
   },
   divBottomButton: {
     alignItems: "bottom",
     justifyContent: "bottom",
     position: "relative",
-    bottom: "-10px",
+    bottom: "-124px",
+    height: "100%",
   },
   buttonBeneficiary: {
     width: "80%",
@@ -60,13 +69,17 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "none",
   },
   buttonSupport: {
-    width: "100%",
-    height: "6vh",
-    bottom: "-80px",
+    position: "absolute",
+    width: "105%",
+    height: "8vh",
+    top: "40%",
+    left: "-2%",
     textTransform: "none",
-    backgroundColor: "green",
+    backgroundColor: "#4b3c2b",
     borderColor: "green",
     color: "#fff",
+    borderBottomRightRadius: "20px",
+    borderBottomLeftRadius: "20px",
   },
 }));
 
@@ -97,9 +110,12 @@ const SideMenu = () => {
   return (
     <div className={classes.SideGrid}>
       <Paper elevation={3} className={classes.paper}>
-        <Grid container spacing={2}>
+        <Grid container spacing={1} style={{ height: "80%" }}>
           <Grid item xs={12} sm={12}>
-            <ListButtons label={"Portfolio"} icon={<LibraryBooksIcon />} />
+            <ListButtons
+              label={"Portfolio"}
+              icon={<img src={PortFolioIco} alt="portfolio" width="40px" />}
+            />
             <Divider classes={{ root: classes.dividerColor }} />
           </Grid>
 
@@ -109,17 +125,26 @@ const SideMenu = () => {
           </Grid>
 
           <Grid item xs={12} sm={12}>
-            <ListButtons label={"Last Transaction"} icon={<PaymentIcon />} />
+            <ListButtons
+              label={"Last Transaction"}
+              icon={<img src={TxIco} alt="portfolio" width="40px" />}
+            />
             <Divider classes={{ root: classes.dividerColor }} />
           </Grid>
 
           <Grid item xs={12} sm={12}>
-            <ListButtons label={"Tutorials"} icon={<OndemandVideoIcon />} />
+            <ListButtons
+              label={"Tutorials"}
+              icon={<img src={TutorialsIco} alt="portfolio" width="40px" />}
+            />
             <Divider classes={{ root: classes.dividerColor }} />
           </Grid>
 
           <Grid item xs={12} sm={12}>
-            <ListButtons label={"Settings"} icon={<SettingsIcon />} />
+            <ListButtons
+              label={"Settings"}
+              icon={<img src={SettingsIco} alt="portfolio" width="40px" />}
+            />
             <Divider classes={{ root: classes.dividerColor }} />
           </Grid>
 
@@ -130,7 +155,7 @@ const SideMenu = () => {
                 variant="outlined"
                 color="secondary"
               >
-                Make Beneficiary
+                <Typography>Make Beneficiary</Typography>
               </Button>
             </div>
             <Divider classes={{ root: classes.dividerColor }} />
@@ -138,13 +163,13 @@ const SideMenu = () => {
 
           <Grid item xs={12} sm={12}>
             <div className={classes.divBottomButton}>
-              <Button
+              <ButtonBase
                 className={classes.buttonSupport}
                 variant="outlined"
                 color="secondary"
               >
-                Support
-              </Button>
+                <Typography>Support</Typography>
+              </ButtonBase>
             </div>
           </Grid>
         </Grid>

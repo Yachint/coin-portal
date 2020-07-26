@@ -5,7 +5,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Collapse from "@material-ui/core/Collapse";
-import AccountBalanceWalletIcon from "@material-ui/icons/AccountBalanceWallet";
+import WalletIco from "../../logo/wallet.png";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 
@@ -39,23 +39,27 @@ export default function WalletList(props) {
     <List component="nav" className={classes.root}>
       <ListItem button onClick={handleClick}>
         <ListItemIcon>
-          <AccountBalanceWalletIcon />
+          <img src={WalletIco} alt="portfolio" width="40px" />
         </ListItemIcon>
-        <ListItemText primary="Wallets" />
+        {open ? (
+          <ListItemText primary="Wallets" style={{ color: "#e2c19d" }} />
+        ) : (
+          <ListItemText primary="Wallets" />
+        )}
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
+        <List component="div" style={{ paddingLeft: "55px", color: "#e2c19d" }}>
           <ListItem
             button
             className={classes.nested}
             value={1}
             onClick={() => props.handleWalletChange(1)}
           >
-            <ListItemIcon>
+            {/* <ListItemIcon>
               <AccountBalanceWalletIcon />
-            </ListItemIcon>
-            <ListItemText primary="Wallet 1" />
+            </ListItemIcon> */}
+            <ListItemText primary="Wallet 1  ..." />
           </ListItem>
           <ListItem
             button
@@ -63,10 +67,10 @@ export default function WalletList(props) {
             value={2}
             onClick={() => props.handleWalletChange(2)}
           >
-            <ListItemIcon>
+            {/* <ListItemIcon>
               <AccountBalanceWalletIcon />
-            </ListItemIcon>
-            <ListItemText primary="Wallet 2" />
+            </ListItemIcon> */}
+            <ListItemText primary="Wallet 2  ..." />
           </ListItem>
           <ListItem
             button
@@ -74,10 +78,10 @@ export default function WalletList(props) {
             value={3}
             onClick={() => props.handleWalletChange(3)}
           >
-            <ListItemIcon>
+            {/* <ListItemIcon>
               <AccountBalanceWalletIcon />
-            </ListItemIcon>
-            <ListItemText primary="Wallet 3" />
+            </ListItemIcon> */}
+            <ListItemText primary="Wallet 3  ..." />
           </ListItem>
         </List>
       </Collapse>

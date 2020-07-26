@@ -54,8 +54,19 @@ const Search = () => {
       </Grid>
       <Grid item xs={6} md={3} sm={5} lg={2}>
         <Paper className={classes.buttons}>
-          <Button startIcon={<AddIcon />}>Add Coin</Button> |
-          <Button startIcon={<DeleteIcon />}>Delete</Button>
+          <Button
+            startIcon={<AddIcon style={{ color: "#85633e" }} />}
+            style={{ height: "40px" }}
+          >
+            <p style={{ color: "#beb4a8" }}>Add Coin</p>
+          </Button>{" "}
+          |
+          <Button
+            startIcon={<DeleteIcon style={{ color: "#85633e" }} />}
+            style={{ height: "40px" }}
+          >
+            <p style={{ color: "#beb4a8" }}>Delete</p>
+          </Button>
         </Paper>
       </Grid>
     </Grid>
